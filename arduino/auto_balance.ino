@@ -1,5 +1,5 @@
 #include <Servo.h>
-
+#define res 485
 int deg = 75;
 int PIN_ESC = 9, value = 1000;
 Servo srvESC;
@@ -32,19 +32,19 @@ void loop() {
   if(Serial.available()){
     r=Serial.read();
     switch(r){
-      case '0':
+      case 'a':
         digitalWrite(4,LOW);
         digitalWrite(5,LOW);
         digitalWrite(6,LOW);
         digitalWrite(7,LOW);
         break;
-      case '1':
+      case 'b':
         digitalWrite(4,HIGH);
         digitalWrite(5,LOW);
         digitalWrite(6,LOW);
         digitalWrite(7,HIGH);
         break;
-      case '2':
+      case 'c':
         digitalWrite(4,LOW);
         digitalWrite(5,HIGH);
         digitalWrite(6,HIGH );
@@ -71,10 +71,10 @@ void loop() {
   val = analogRead(A0);
 
   if (millis() - ser_t > 5) {
-    if (val > 490 && deg > 0) {
+    if (val > res+10 && deg > 0) {
       deg--;
     }
-    else if (val < 470 && deg < 150) {
+    else if (val < res-10 && deg < 150) {
       deg++;
     }
     else {
