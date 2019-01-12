@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
 
@@ -18,6 +18,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+        }
+    }
 }
 
 dependencies {
@@ -27,5 +35,6 @@ dependencies {
     compile 'com.android.support:design:25.0.0'
     compile project(':BluetoothLowEnergyLibrary')
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
 

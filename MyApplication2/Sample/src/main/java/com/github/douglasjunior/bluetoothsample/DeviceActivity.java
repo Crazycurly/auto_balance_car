@@ -24,8 +24,10 @@
 
 package com.github.douglasjunior.bluetoothsample;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -43,12 +45,16 @@ import static java.lang.Thread.sleep;
  */
 
 public class DeviceActivity extends AppCompatActivity implements BluetoothService.OnBluetoothEventCallback {
+    private static final String TAG = "DeviceActivity";
+
     private BluetoothService mService;
     private BluetoothWriter mWriter;
     private Button mButton;
+    private Button setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device);
 
@@ -61,7 +67,16 @@ public class DeviceActivity extends AppCompatActivity implements BluetoothServic
         mButton = (Button) findViewById(R.id.button3);
         mButton.setOnTouchListener(b);
 
+        setting = (Button) findViewById(R.id.setting);
+        setting.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DeviceActivity.this, settingActivity.class));
+            }
+        });
     }
+
 
     class ButtonListener implements View.OnTouchListener {
         public boolean onTouch(View v, MotionEvent event) {
@@ -80,28 +95,20 @@ public class DeviceActivity extends AppCompatActivity implements BluetoothServic
                     mWriter.writeln("b");
                 }
             }
+
             return false;
         }
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mService.setOnEventCallback(this);
+    }
+
+    @Override
     public void onDataRead(byte[] buffer, int length) {
-    }
-
-    @Override
-    public void onStatusChange(BluetoothStatus status) {
-    }
-
-    @Override
-    public void onDeviceName(String deviceName) {
-    }
-
-    @Override
-    public void onToast(String message) {
-    }
-
-    @Override
-    public void onDataWrite(byte[] buffer) {
+        Log.d(TAG, "onDataRead: " + new String(buffer, 0, length));
     }
 
     @Override
@@ -111,13 +118,39 @@ public class DeviceActivity extends AppCompatActivity implements BluetoothServic
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    public void onStatusChange(BluetoothStatus status) {
+        Log.d(TAG, "onStatusChange: " + status);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        mService.setOnEventCallback(this);
+    public void onDeviceName(String deviceName) {
+        Log.d(TAG, "onDeviceName: " + deviceName);
     }
+
+    @Override
+    public void onToast(String message) {
+        Log.d(TAG, "onToast");
+    }
+
+    @Override
+    public void onDataWrite(byte[] buffer) {
+        Log.d(TAG, "onDataWrite");
+    }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        mService.disconnect();
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        mService.setOnEventCallback(this);
+//    }
 }

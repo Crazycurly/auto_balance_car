@@ -1,6 +1,9 @@
 #include <Servo.h>
-#define res 485
+#include <EEPROM.h>
+#define address 3
+int res=500;
 int deg = 75;
+int speed=200;
 int PIN_ESC = 9, value = 1000;
 Servo srvESC;
 Servo myservo;
@@ -12,11 +15,14 @@ void setup() {
     pinMode(i,OUTPUT);
     digitalWrite(i,LOW);
   }
+  Serial.begin(9600);
+  res=word(EEPROM.read(address),EEPROM.read(address+1));
+  Serial.println(res);
   srvESC.attach(9);
   myservo.attach(2);
   myservo.write(deg);
 
-  Serial.begin(9600);
+  
 
   srvESC.writeMicroseconds(700);
   delay(2000);
@@ -39,21 +45,38 @@ void loop() {
         digitalWrite(7,LOW);
         break;
       case 'b':
-        digitalWrite(4,HIGH);
+        analogWrite(4,speed);
         digitalWrite(5,LOW);
         digitalWrite(6,LOW);
-        digitalWrite(7,HIGH);
+        analogWrite(7,speed);
         break;
       case 'c':
         digitalWrite(4,LOW);
-        digitalWrite(5,HIGH);
-        digitalWrite(6,HIGH );
+        analogWrite(5,speed);
+        analogWrite(6,speed );
         digitalWrite(7,LOW);
+        break;
+      case 's':
+        res=Serial.parseInt();
+        EEPROM.write(address,highByte(res));
+        EEPROM.write(address+1,lowByte(res));
+        // Serial.println(EEPROM.read(address));
+        break;
+      case 'm':
+        Serial.print("m");
+        Serial.println(res);
+        break;
+      case 'p':
+        speed=Serial.parseInt();
+        break;
+      case 'd':
+        Serial.println(speed);
         break;
     }
   }
 
   if (millis() - serial_t > 100) {
+    Serial.print("r");
     Serial.println(val);
     serial_t = millis();
   }
@@ -71,13 +94,13 @@ void loop() {
   val = analogRead(A0);
 
   if (millis() - ser_t > 5) {
-    if (val > res+10 && deg > 0) {
-      deg--;
-    }
-    else if (val < res-10 && deg < 150) {
+    if (val > res+10 && deg < 150) {
       deg++;
     }
-    else {
+    else if (val < res-10 && deg >0) {
+      deg--;
+    }
+    else {  
       if (deg > 75)
         deg--;
       else if (deg < 75)

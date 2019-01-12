@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jan 02 17:11:37 CST 2019
+#Sat Jan 12 23:25:42 CST 2019
 0.baseType=DIRECTORY
 0.base=C\:\\Users\\LineWeb\\auto_balance_car\\MyApplication2\\Sample\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 0.path=classes.dex

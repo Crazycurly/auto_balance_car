@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\LineWeb\\auto_balance_car\\MyApplication2\\Sample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\LineWeb\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.0.0.aar\\2bdd603a89c361e4a80a2f0b5b165262\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\LineWeb\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.0.0.aar\\c95b9acc8b12262454761ca3693620b3\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\LineWeb\\.gradle\\caches\\transforms-1\\files-1.1\\design-25.0.0.aar\\3943454d61985e2dcdf030b32798f774\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\LineWeb\\.gradle\\caches\\transforms-1\\files-1.1\\design-25.0.0.aar\\3726a852e7c4bda0f6410d01b8ade25b\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\LineWeb\\auto_balance_car\\MyApplication2\\Sample\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v17\\values-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\LineWeb\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.0.0.aar\\2bdd603a89c361e4a80a2f0b5b165262\\res\\values-v17\\values-v17.xml",
+                    "source": "C:\\Users\\LineWeb\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-25.0.0.aar\\c95b9acc8b12262454761ca3693620b3\\res\\values-v17\\values-v17.xml",
                     "from": {
                         "startLines": "2,5,9,12,15,18,22,26,29,32,35,39,42,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
