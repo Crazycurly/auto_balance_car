@@ -1,4 +1,4 @@
-#Sat Jan 12 22:18:39 CST 2019
+#Sun Jan 13 12:43:47 CST 2019
 base.0=C\:\\Users\\LineWeb\\auto_balance_car\\MyApplication2\\Sample\\build\\intermediates\\transforms\\dexMerger\\debug\\2
 path.0=classes.dex
 renamed.0=classes.dex

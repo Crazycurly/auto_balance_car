@@ -34,13 +34,13 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.github.douglasjunior.bluetoothsample.BitmapActivity"
+            android:name="com.github.douglasjunior.bluetoothsample.settingActivity"
             android:label="@string/activity_device"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.github.douglasjunior.bluetoothsample.settingActivity"
-            android:label="@string/activity_setting"
+            android:name="com.github.douglasjunior.bluetoothsample.TextActivity"
+            android:label="@string/activity_device"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
     </application>

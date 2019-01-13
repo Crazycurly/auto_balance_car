@@ -793,6 +793,7 @@ id contentPanel
 id control
 id custom
 id customPanel
+id debug
 id decor_content_parent
 id default_activity_button
 id design_bottom_sheet
@@ -804,6 +805,8 @@ id dimensions
 id direct
 id disableHome
 id down
+id ed_read
+id ed_write
 id edit_query
 id end
 id end_padder
@@ -825,8 +828,6 @@ id icon
 id icon_group
 id ifRoom
 id image
-id img_blackwhite
-id img_original
 id info
 id invisible
 id item_touch_helper_previous_elevation
@@ -962,10 +963,10 @@ layout abc_screen_toolbar
 layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
-layout activity_bitmap
 layout activity_device
 layout activity_main
 layout activity_setting
+layout activity_text
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -1036,7 +1037,6 @@ string abc_toolbar_collapse_description
 string action_scan
 string action_stop
 string activity_device
-string activity_setting
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior

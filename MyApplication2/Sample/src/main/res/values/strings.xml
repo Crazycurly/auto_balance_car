@@ -3,5 +3,4 @@
     <string name="action_scan">SCAN</string>
     <string name="action_stop">STOP</string>
     <string name="activity_device">Device</string>
-    <string name="activity_setting" />
 </resources>

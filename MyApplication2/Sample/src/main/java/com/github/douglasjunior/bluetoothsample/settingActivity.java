@@ -34,9 +34,9 @@ public class settingActivity extends AppCompatActivity implements View.OnClickLi
     private BluetoothService mService;
     private BluetoothWriter mWriter;
     private TextView res, mid;
-    private Button control, up, down, set;
-    private int num_res =500;
-    private int num_mid=500;
+    private Button control, up, down, set, debug;
+    private int num_res = 500;
+    private int num_mid = 500;
     private LineChart chart;
     private SeekBar sb_normal;
     private TextView txt_cur;
@@ -76,6 +76,7 @@ public class settingActivity extends AppCompatActivity implements View.OnClickLi
 
         LineData data = new LineData();
         data.setValueTextColor(Color.BLACK);
+
 
         // add empty data
         chart.setData(data);
@@ -117,6 +118,14 @@ public class settingActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
+        debug = (Button) findViewById(R.id.debug);
+        debug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(settingActivity.this, TextActivity.class));
+            }
+        });
+
         up = (Button) findViewById(R.id.up);
         up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,6 +152,7 @@ public class settingActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
+
         mContext = settingActivity.this;
         bindViews();
 
@@ -165,14 +175,14 @@ public class settingActivity extends AppCompatActivity implements View.OnClickLi
                 data.addDataSet(set);
             }
 
-            data.addEntry(new Entry(set.getEntryCount(), num_res-num_mid), 0);
+            data.addEntry(new Entry(set.getEntryCount(), num_res - num_mid), 0);
             data.notifyDataChanged();
 
             // let the chart know it's data has changed
             chart.notifyDataSetChanged();
 
             // limit the number of visible entries
-            chart.setVisibleXRangeMaximum(120);
+            chart.setVisibleXRangeMaximum(60);
             // chart.setVisibleYRange(30, AxisDependency.LEFT);
 
             // move to the latest entry
@@ -187,9 +197,11 @@ public class settingActivity extends AppCompatActivity implements View.OnClickLi
     private LineDataSet createSet() {
 
         LineDataSet set = new LineDataSet(null, "電阻值變化");
+        set.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
         set.setAxisDependency(AxisDependency.LEFT);
         set.setColor(ColorTemplate.getHoloBlue());
         set.setCircleColor(Color.BLACK);
+        set.setDrawCircleHole(false);
         set.setLineWidth(2f);
         set.setCircleRadius(2f);
         set.setFillAlpha(65);
@@ -228,10 +240,9 @@ public class settingActivity extends AppCompatActivity implements View.OnClickLi
             num_mid = Integer.parseInt(tmp);
             mid.setText(String.valueOf(num_mid));
             Log.d(TAG, "mid:" + String.valueOf(num_mid));
-        }
-        else if (tmp.substring(0, 1).equals("d")) {
+        } else if (tmp.substring(0, 1).equals("d")) {
             tmp = tmp.replace("d", "").trim();
-            int progress=Integer.parseInt(tmp)-155;
+            int progress = Integer.parseInt(tmp) - 155;
             sb_normal.setProgress(progress);
             txt_cur.setText(progress + " / 100");
         }
@@ -252,7 +263,7 @@ public class settingActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mWriter.writeln("p"+(sb_normal.getProgress()+155));
+                mWriter.writeln("p" + (sb_normal.getProgress() + 155));
             }
 
         });
